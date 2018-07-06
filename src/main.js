@@ -44,6 +44,17 @@ listVenues.addEventListener('click', event => {
   getData(event.target.id, '../data/cohorts.json', showCohorts);
 });
 
+let options = {
+    cohort: null,
+    cohortData: {
+      users: null,
+      progress: null,
+  
+    },
+    orderBy: 'Name',
+    orderDirection: 'ASC',
+    search: ''
+  }
 /* listVenues.addEventListener('click', event => {
   mainSection.innerHTML = `
     <div>
