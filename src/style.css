@@ -1,37 +1,22 @@
+body,
 html,
-body {
+.row {
     height: 100%;
 }
 
 .wrapper {
     background-color: black;
-    max-width: 25%;
     height: 100%;
 }
 
-.img-fluid {
-    padding: 2%;
+#cdmx,
+#lim,
+#scl,
+#spl {
+    background-color: rgb(255, 229, 33);
 }
 
 .sidebar-footer {
     background-color: rgb(255, 255, 255);
-}
-
-li {
-    margin-bottom: 5%;
-}
-
-.rounded-circle {
-    align-self: center;
-    max-width: auto;
-}
-
-#cdmx,#lim,#scl,#spl {
-    background-color: rgb(255, 229, 33);
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(2, 50px);
+    padding: 5%;
 }
