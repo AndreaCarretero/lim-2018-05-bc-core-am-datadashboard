@@ -50,9 +50,11 @@ const viewProgress = (idOfCohorts, progressObject) => {
 //5to
 
 const viewUsers = (idOfCohorts, usersArray) => {
-  options.cohortData.users = usersArray;
+    options.cohortData.users = usersArray;
   getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, viewProgress);
 }
+
+
 
 // Click
 

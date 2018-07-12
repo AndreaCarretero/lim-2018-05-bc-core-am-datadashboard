@@ -1,5 +1,8 @@
 window.computeUsersStats = (users, progress, courses) => {
   console.log(users, progress)
+  let students = users;
+  // let progress 
+  students = users.filter(user =>user.role === 'student');
   /* let user1 = users;
   let progress1= progress;
 
@@ -41,7 +44,7 @@ window.computeUsersStats = (users, progress, courses) => {
   // Paso 1: calcúlo porcentaje de completitud para cada usuario --> courses
 
   courses.forEach(coursesName => {// recorriendo nombre de los cursos
-    users.forEach((user) => {
+    students.forEach((user) => {
       let percent= 0;
       let exerciseTotal= 0;
       let exerciseCompleted= 0;
@@ -76,12 +79,13 @@ window.computeUsersStats = (users, progress, courses) => {
             //calculo reads
   
             if(part.hasOwnProperty('type')){
-
-                if(part.type === 'read'){
+              if(part.type === 'read'&& readsCompleted!== 0){
                 readsTotal++;
-                readsCompleted += part.completed;
-                
-              }
+                readsCompleted += part.completed; }
+                else if (part.type === 'read'&& readsCompleted === 0){
+                readsCompleted = 1;
+                readsTotal = 1
+                }
 
               //calculo Quizzes
 
