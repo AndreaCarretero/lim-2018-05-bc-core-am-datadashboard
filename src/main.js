@@ -1,9 +1,11 @@
+
+//Antes de comenzar con funciones; se declaran variables para traer los 'id´s' de html
 const listVenues = document.querySelector('#venues');
 const mainSection = document.getElementById('cohorts');
-const viewUsers = document.getElementById('users');
+const showUsers = document.getElementById('users');
 const content = document.getElementById('selectsede');
 
-//Objeto "options" :
+//Objeto global "options" :
 let options = {
   cohort: 0,
   cohortData: {
@@ -15,6 +17,7 @@ let options = {
   search: ''
 }
 
+// se utiliza xhr- 
 const getData = (str, url, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
@@ -27,7 +30,7 @@ const getData = (str, url, callback) => {
   xhr.send();
 }
 // 3ero
-const showCohorts = (city, dataCohorts) => {
+const viewCohorts = (city, dataCohorts) => {
   options.cohort = dataCohorts;
   const cohortByCity = dataCohorts.filter(cohort => {
     return cohort.id.indexOf(city) !== -1;
@@ -38,23 +41,24 @@ const showCohorts = (city, dataCohorts) => {
       `<li id="${cohort.id}">${cohort.id}</li>`
   };
 };
-const showProgress = (idOfCohorts, progressObject) => {
-  console.log(idOfCohorts, progressObject)
-  console.log(processCohortData(options))
+const viewProgress = (idOfCohorts, progressObject) => {
+/*   console.log(idOfCohorts, progressObject)
+  console.log(processCohortData(options)) */
   options.cohortData.progress = progressObject;
+  processCohortData(options)
 }
 //5to
 
-const showUsers = (idOfCohorts, usersArray) => {
+const viewUsers = (idOfCohorts, usersArray) => {
   options.cohortData.users = usersArray;
-  getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, showProgress);
+  getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, viewProgress);
 }
 
 // Click
 
 //2do
 listVenues.addEventListener('click', event => {
-  getData(event.target.id, '../data/cohorts.json', showCohorts);
+  getData(event.target.id, '../data/cohorts.json', viewCohorts);
 });
 
 // 4to
@@ -65,5 +69,5 @@ content.addEventListener('click', (event) => {
       }
   }); 
 
-getData(event.target.id, `../data/cohorts/${event.target.id}/users.json`, showUsers)
+getData(event.target.id, `../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
