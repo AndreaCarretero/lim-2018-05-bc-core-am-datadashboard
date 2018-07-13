@@ -54,6 +54,9 @@ const viewUsers = (idOfCohorts, usersArray) => {
   getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, viewProgress);
 }
 
+//variable para 
+
+
 
 
 // Click

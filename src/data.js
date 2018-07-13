@@ -1,50 +1,16 @@
 window.computeUsersStats = (users, progress, courses) => {
-  console.log(users, progress)
-  let students = users;
-  // let progress 
-  students = users.filter(user =>user.role === 'student');
-  /* let user1 = users;
-  let progress1= progress;
 
+  let usersCopy = users;
+  let progressCopy= progress;
+  usersCopy = users.filter(user =>user.role === 'student');  
 
-  let newUsers= users1.filter((user)=> user.role === 'student').map(user =>{
-    const progresYusuario = progress1[user.id];
-    return ({
-      stats:{
-        name: user.name,
-        percent:,
-        exercises:{
-          total:
-          completed:
-          percent:
-        },
-        reads:{
-          total:
-          completed:
-          percent:          
-        },
-        quizzes:{
-          total:
-          completed:
-          percent: 
-          scoreSum:
-          scoreAvg:
-        }
-      }
-
-    })
-  }) */
-  // me retorna nuevo array con usuarios
-
- /*  let newUsers= users1.map((user)=> user.role === 'student' {  */// me retora nuevo array con usuarios
-
-    /*  Declaro variables para cada propiedad del progreso de las alumnas
+  /*  Declaro variables para cada propiedad del progreso de las alumnas
      propiedades del progreso  */
   const usersWithStats = [];
+  
   // Paso 1: calcúlo porcentaje de completitud para cada usuario --> courses
-
   courses.forEach(coursesName => {// recorriendo nombre de los cursos
-    students.forEach((user) => {
+    usersCopy.forEach((user) => {
       let percent= 0;
       let exerciseTotal= 0;
       let exerciseCompleted= 0;
@@ -54,15 +20,16 @@ window.computeUsersStats = (users, progress, courses) => {
       let quizzesCompleted= 0;
       let scoreSum= 0;
       let scoreAvg= 0;
-
-      if(progress[user.id] && progress[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
-        percent= progress[user.id].intro.percent; 
-        const usersUnits= progress[user.id].intro.units;
+      //aqui se conectaran students(users) y progressCopy(pogress)
+      if(progressCopy[user.id] && progressCopy[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
+        percent= progressCopy[user.id].intro.percent; 
+        const usersUnits= progressCopy[user.id].intro.units;
         Object.keys(usersUnits).forEach((unitName)=>{// Se capturan los arrays con las propiedades enumerdas  y las recorro con el método de forEach
           const parts= usersUnits[unitName].parts
           Object.keys(parts).forEach((partName)=>{
             const part = parts[partName];
 
+          
             //calculo ejercicios
             if(part.hasOwnProperty('exercises')){
               const exercises= part.exercises;
@@ -76,8 +43,7 @@ window.computeUsersStats = (users, progress, courses) => {
                 }
               });
             }
-            //calculo reads
-  
+
             if(part.hasOwnProperty('type')){
               if(part.type === 'read'&& readsCompleted!== 0){
                 readsTotal++;
@@ -91,9 +57,9 @@ window.computeUsersStats = (users, progress, courses) => {
 
               if(part.type === 'quiz'){
                 quizzesTotal+= 1;
-                quizzesTotal+= part.completed;
+                quizzesCompleted+= part.completed;
                 scoreSum+= part.score ? part.score : 0;
-                scoreAvg+= scoreSum / quizzesCompleted ? scoreSum / quizzesCompleted : 0;
+                scoreAvg= (scoreSum / quizzesCompleted) ? (scoreSum / quizzesCompleted) : 0;
               }
             }
           })
@@ -101,9 +67,16 @@ window.computeUsersStats = (users, progress, courses) => {
       }  
     //caculo porcentaje
     // if ,si esto es iugl a 0 sino e otra fórmula si extotal =0
-    const exercisePercent= (exerciseCompleted / exerciseTotal) * 100
-    const readsPercent = (readsCompleted / readsTotal)* 100
-    const quizzesPercent = (quizzesCompleted/ quizzesTotal) *100
+    let calculatePercent= (a,b) =>{
+      if(b==0){
+        return 0;
+      }else
+      return (a/b)*100;
+
+    }
+    const exercisePercent= calculatePercent(exerciseCompleted, exerciseTotal );
+    const readsPercent = calculatePercent(readsCompleted, readsTotal);
+    const quizzesPercent = calculatePercent(quizzesCompleted, quizzesTotal);
   
   // obtengo usuarias con sus progresos
   
@@ -139,6 +112,6 @@ window.computeUsersStats = (users, progress, courses) => {
 
 window.processCohortData =(options)=>{
   let courses = Object.keys(options.cohort.coursesIndex);
-  let estudiantes = window.computeUsersStats(options.cohortData.users,options.cohortData.progress, courses )
-  console.log(estudiantes);
+  let showStudents= window.computeUsersStats(options.cohortData.users,options.cohortData.progress, courses )
+  console.log(showStudents);
 }
