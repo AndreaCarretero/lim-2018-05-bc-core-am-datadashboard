@@ -62,6 +62,11 @@ const viewProgress = (idOfCohorts, progressObject) => {
   }
 
 }
+
+
+
+
+
 //5to
 
 const viewUsers = (idOfCohorts, usersArray) => {
@@ -69,7 +74,7 @@ const viewUsers = (idOfCohorts, usersArray) => {
   getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, viewProgress);
 }
 
-//variable para 
+
 
 
 
@@ -89,9 +94,19 @@ content.addEventListener('click', (event) => {
       }
   }); 
 
-getData(event.target.id, `../data/cohorts/${event.target.id}/users.json`, viewUsers)
+getData(event.target.id,`../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
-// showUsers = (printUsers) => {
-//   let showdataUsers = '';
-//   output +=
-//     `;
+
+searchStudents.addEventListener('keyup', (event) =>{
+  options.search = event.target.value;
+  console.log(options.search);
+  let searchNow = processCohortData(options); // Aquí se almacenará el nuevo array 
+  console.log(searchNow);
+  const ulContent= document.getElementById('usersSearch');
+  ulContent.innerHTML='';
+  searchNow.forEach((user) =>{
+    ulContent.innerHTML += `
+     <li>${user['name']}</li>`
+  });
+})
+

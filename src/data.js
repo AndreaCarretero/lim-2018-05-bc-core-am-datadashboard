@@ -1,16 +1,17 @@
 window.computeUsersStats = (users, progress, courses) => {
 
+   
   let usersCopy = users;
   let progressCopy= progress;
-  usersCopy = users.filter(user =>user.role === 'student');  
+   
 
-  //Aquí se almacenará el array de toda la info de cada estudiante - 1x1
+  /*  Declaro variables para cada propiedad del progreso de las alumnas
+     propiedades del progreso  */
   const usersWithStats = [];
   
   // Paso 1: calcúlo porcentaje de completitud para cada usuario --> courses
-  courses.forEach(coursesName => {// recorriendo array de los cursos
-    usersCopy.forEach((user) => {  
-
+  courses.forEach(coursesName => {// recorriendo nombre de los cursos
+    usersCopy.forEach((user) => {
       let percent= 0;
       let exerciseTotal= 0;
       let exerciseCompleted= 0;
@@ -20,8 +21,11 @@ window.computeUsersStats = (users, progress, courses) => {
       let quizzesCompleted= 0;
       let scoreSum= 0;
       let scoreAvg= 0;
-      //aqui se conectaran students(users) y progressCopy(pogress)
+
+
+      //Aquí se conectaran students(users) y progressCopy(pogress)
       if(progressCopy[user.id] && progressCopy[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
+        const percentview= progress[user.id].intro.percent; 
         const usersUnits= progressCopy[user.id].intro.units;
         Object.keys(usersUnits).forEach((unitName)=>{// Se capturan los arrays con las propiedades enumerdas  y las recorro con el método de forEach
           const parts= usersUnits[unitName].parts
@@ -29,30 +33,31 @@ window.computeUsersStats = (users, progress, courses) => {
             const part = parts[partName];
 
           
-            //calculo ejercicios
+          // Calcular propiedad de 'excercises'
             if(part.hasOwnProperty('exercises')){
               const exercises= part.exercises;
               Object.keys(exercises).forEach((exerciseName)=>{
                 const exercise= exercises[exerciseName];
                 exerciseTotal += 1;
-                if(exercise.completed !== undefined){ // Se coloca undefined para que 
+                if(exercise.completed !== undefined){ // Se coloca una condición para que pueda solo evaluar a las estudiantes que tengan "excercises"
                   exerciseCompleted += exercise.completed;
                 }else{
                   exerciseCompleted = 0;
                 }
               });
             }
-
+          // Calcular propiedad de 'read' :
             if(part.hasOwnProperty('type')){
-              if(part.type === 'read'&& readsCompleted!== 0){
+              if(part.type === 'read'&& readsCompleted !== 0){
                 readsTotal++;
-                readsCompleted += part.completed; }
+                readsCompleted += part.completed;
+               }
                 else if (part.type === 'read'&& readsCompleted === 0){
                 readsCompleted = 1;
                 readsTotal = 1
                 }
 
-              //calculo Quizzes
+              //Calcular propiedad de ' Quizzes'
 
               if(part.type === 'quiz'){
                 quizzesTotal+= 1;
@@ -65,24 +70,24 @@ window.computeUsersStats = (users, progress, courses) => {
         })
       }  
     //caculo porcentaje
-    // if ,si esto es iugl a 0 sino e otra fórmula si extotal =0
-    let calculatePercent= (a,b) =>{
+     let calculatePercent= (a,b) =>{
       if(b==0){
         return 0;
       }else
       return (a/b)*100;
 
     }
+   
     const exercisePercent= calculatePercent(exerciseCompleted, exerciseTotal );
     const readsPercent = calculatePercent(readsCompleted, readsTotal);
     const quizzesPercent = calculatePercent(quizzesCompleted, quizzesTotal);
-  
-  // obtengo usuarias con sus progresos
+    
+  // Según read me -se retorna: (Se obtiene usuarias con su progreso correspondiente) 
   
     const userWithStats = {
       name: user.name.toUpperCase(),
       stats:{
-        percent:percent,
+        percent: percent,
         exercises: {
           total: exerciseTotal,
           completed: exerciseCompleted,
@@ -102,17 +107,39 @@ window.computeUsersStats = (users, progress, courses) => {
         }
       }
     }
-    //  se agrega el retorno- objeto al array usersWithStats
     usersWithStats.push(userWithStats);
     }) 
   })
   //return userWithSats
-  return usersWithStats
-},
+  return usersWithStats;
+}
+
+
+window.sortUsers = (users, orderBy, orderDirection) => {
+
+
+  
+}
+
+
+
+window.filterUsers = (users, search) =>{
+
+  const filterStudent = users.filter((userSearch) =>{
+  if (userSearch.name !== undefined){
+    let name = userSearch.name;
+    return (name.toUpperCase().indexOf(search.toUpperCase()) !== -1);
+  }
+})
+return filterStudent;
+} 
 
 window.processCohortData =(options)=>{
   let courses = Object.keys(options.cohort.coursesIndex);
-  let showStudents= computeUsersStats(options.cohortData.users,options.cohortData.progress, courses )
-   console.log(showStudents);
-   return showStudents;
+  // Aquí se filtrarán estudiantes para luego poder realizar función número 1
+  const  usersCopy = options.cohortData.users.filter(user =>user.role === 'student'); 
+  const showStudents= computeUsersStats(usersCopy,options.cohortData.progress, courses )
+  console.log(showStudents);
+  const viewUsersFilters = filterUsers(showStudents,options.search);
+  return viewUsersFilters;
 }
