@@ -4,13 +4,13 @@ window.computeUsersStats = (users, progress, courses) => {
   let progressCopy= progress;
   usersCopy = users.filter(user =>user.role === 'student');  
 
-  /*  Declaro variables para cada propiedad del progreso de las alumnas
-     propiedades del progreso  */
+  //Aquí se almacenará el array de toda la info de cada estudiante - 1x1
   const usersWithStats = [];
   
   // Paso 1: calcúlo porcentaje de completitud para cada usuario --> courses
-  courses.forEach(coursesName => {// recorriendo nombre de los cursos
-    usersCopy.forEach((user) => {
+  courses.forEach(coursesName => {// recorriendo array de los cursos
+    usersCopy.forEach((user) => {  
+
       let percent= 0;
       let exerciseTotal= 0;
       let exerciseCompleted= 0;
@@ -22,7 +22,6 @@ window.computeUsersStats = (users, progress, courses) => {
       let scoreAvg= 0;
       //aqui se conectaran students(users) y progressCopy(pogress)
       if(progressCopy[user.id] && progressCopy[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
-        percent= progressCopy[user.id].intro.percent; 
         const usersUnits= progressCopy[user.id].intro.units;
         Object.keys(usersUnits).forEach((unitName)=>{// Se capturan los arrays con las propiedades enumerdas  y las recorro con el método de forEach
           const parts= usersUnits[unitName].parts
@@ -103,6 +102,7 @@ window.computeUsersStats = (users, progress, courses) => {
         }
       }
     }
+    //  se agrega el retorno- objeto al array usersWithStats
     usersWithStats.push(userWithStats);
     }) 
   })
@@ -112,6 +112,7 @@ window.computeUsersStats = (users, progress, courses) => {
 
 window.processCohortData =(options)=>{
   let courses = Object.keys(options.cohort.coursesIndex);
-  let showStudents= window.computeUsersStats(options.cohortData.users,options.cohortData.progress, courses )
-  console.log(showStudents);
+  let showStudents= computeUsersStats(options.cohortData.users,options.cohortData.progress, courses )
+   console.log(showStudents);
+   return showStudents;
 }

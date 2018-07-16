@@ -2,12 +2,12 @@
 //Antes de comenzar con funciones; se declaran variables para traer los 'id´s' de html
 const listVenues = document.querySelector('#venues');
 const mainSection = document.getElementById('cohorts');
-const showUsers = document.getElementById('users');
+const showUsersandProgress = document.getElementById('users');
 const content = document.getElementById('selectsede');
 
 //Objeto global "options" :
 let options = {
-  cohort: 0,
+  cohort: null,
   cohortData: {
     users: null,
     progress: null,
@@ -16,6 +16,7 @@ let options = {
   orderDirection: 'ASC',
   search: ''
 }
+
 
 // se utiliza xhr- 
 const getData = (str, url, callback) => {
@@ -29,7 +30,7 @@ const getData = (str, url, callback) => {
   });
   xhr.send();
 }
-// 3ero
+// Mostrar cohorts-
 const viewCohorts = (city, dataCohorts) => {
   options.cohort = dataCohorts;
   const cohortByCity = dataCohorts.filter(cohort => {
@@ -41,11 +42,25 @@ const viewCohorts = (city, dataCohorts) => {
       `<li id="${cohort.id}">${cohort.id}</li>`
   };
 };
+// Aquí se llama a progreso
 const viewProgress = (idOfCohorts, progressObject) => {
-/*   console.log(idOfCohorts, progressObject)
-  console.log(processCohortData(options)) */
+ /* console.log(idOfCohorts, progressObject)
+  console.log(processCohortData(options))  */
   options.cohortData.progress = progressObject;
-  processCohortData(options)
+  const array= processCohortData(options);
+  for(let students of array){
+    showUsersandProgress.innerHTML+=
+    `<div>
+             <td id= "tablestudent">${students.name}</td>
+             <td>${students.stats.percent}</td> 
+             <td>${students.stats.exercises.percent}</td>
+             <td>${students.stats.quizzes.percent}</td>
+             <td>${students.stats.quizzes.scoreSum}</td>
+             <td>${students.stats.quizzes.scoreAvg}</td>
+             <td>${students.stats.reads.percent}</td>
+             </div>`;
+  }
+
 }
 //5to
 
@@ -76,3 +91,7 @@ content.addEventListener('click', (event) => {
 
 getData(event.target.id, `../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
+// showUsers = (printUsers) => {
+//   let showdataUsers = '';
+//   output +=
+//     `;
