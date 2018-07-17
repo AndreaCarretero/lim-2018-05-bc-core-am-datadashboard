@@ -4,8 +4,11 @@ const listVenues = document.querySelector('#venues');
 const mainSection = document.getElementById('cohorts');
 const showUsersandProgress = document.getElementById('users');
 const content = document.getElementById('selectsede');
-
+const buttonOrderBy=  document.getElementById('orderButton');
+const selectAscDesc= document.getElementById('orderII');
+const selectAll= document.getElementById('order');
 //Objeto global "options" :
+
 let options = {
   cohort: null,
   cohortData: {
@@ -19,7 +22,7 @@ let options = {
 
 
 // se utiliza xhr- 
-const getData = (str, url, callback) => {
+const getData = (str, url, callback) => { 
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
   xhr.addEventListener('load', event => {
@@ -47,7 +50,7 @@ const viewProgress = (idOfCohorts, progressObject) => {
  /* console.log(idOfCohorts, progressObject)
   console.log(processCohortData(options))  */
   options.cohortData.progress = progressObject;
-  const array= processCohortData(options);
+  let array= processCohortData(options);
   for(let students of array){
     showUsersandProgress.innerHTML+=
     `<div>
@@ -64,19 +67,12 @@ const viewProgress = (idOfCohorts, progressObject) => {
 }
 
 
-
-
-
 //5to
 
 const viewUsers = (idOfCohorts, usersArray) => {
     options.cohortData.users = usersArray;
-  getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`, viewProgress);
+  getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`,viewProgress);
 }
-
-
-
-
 
 
 // Click
@@ -91,22 +87,46 @@ content.addEventListener('click', (event) => {
      options.cohort.forEach((elementOfCohort) => { 
       if (elementOfCohort.id === event.target.id){ 
           options.cohort= elementOfCohort;
+          console.log(options);
       }
   }); 
-
 getData(event.target.id,`../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
 
-searchStudents.addEventListener('keyup', (event) =>{
+// Aplicando 2da funciónn para filtrar estudiantes
+filterSearch.addEventListener('keyup', (event) => { debugger
   options.search = event.target.value;
-  console.log(options.search);
-  let searchNow = processCohortData(options); // Aquí se almacenará el nuevo array 
-  console.log(searchNow);
-  const ulContent= document.getElementById('usersSearch');
-  ulContent.innerHTML='';
-  searchNow.forEach((user) =>{
-    ulContent.innerHTML += `
-     <li>${user['name']}</li>`
-  });
+  let searchNow= processCohortData(options); // Aquí se almacenará el nuevo array 
+  showUsersandProgress.innerHTML= '';
+  for(let users of searchNow){
+    showUsersandProgress.innerHTML+=
+
+    `<div id='showEstudents'>
+		<td id= 'tablestudent'>${users['name']}</td>
+		<td>${users.stats.percent}</td> 
+    <td>${users.stats.exercises.percent}</td>
+    <td>${users.stats.quizzes.percent}</td>
+    <td>${users.stats.quizzes.scoreSum}</td>
+    <td>${users.stats.quizzes.scoreAvg}</td>
+    <td>${users.stats.reads.percent}</td>
+		</div>
+		`;
+	};
+
 })
 
+
+
+/* 
+
+
+// Se llama 3ra función -ayuda Kalu
+buttonOrderBy.addEventListener('click', (event) => {
+  options.orderBy = selectAscDesc.value;
+  options.orderDirection = selectAll.value; 
+  console.log(options);
+  
+  const orderNow = processCohortData(options);
+  showUsersandProgress.innerHTML = '';
+  viewUsers(orderNow);
+}) */

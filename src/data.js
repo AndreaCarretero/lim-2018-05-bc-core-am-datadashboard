@@ -25,7 +25,7 @@ window.computeUsersStats = (users, progress, courses) => {
 
       //Aquí se conectaran students(users) y progressCopy(pogress)
       if(progressCopy[user.id] && progressCopy[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
-        const percentview= progress[user.id].intro.percent; 
+         percent= progress[user.id].intro.percent; 
         const usersUnits= progressCopy[user.id].intro.units;
         Object.keys(usersUnits).forEach((unitName)=>{// Se capturan los arrays con las propiedades enumerdas  y las recorro con el método de forEach
           const parts= usersUnits[unitName].parts
@@ -115,26 +115,22 @@ window.computeUsersStats = (users, progress, courses) => {
 }
 
 
-window.sortUsers = (users, orderBy, orderDirection) => {
 
 
-  
+
+
+
+window.filterUsers = (users, search) => {
+
+  const filterNow = users.filter(user => {
+    return user.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+
+  });
+
+  return filterNow;
 }
 
-
-
-window.filterUsers = (users, search) =>{
-
-  const filterStudent = users.filter((userSearch) =>{
-  if (userSearch.name !== undefined){
-    let name = userSearch.name;
-    return (name.toUpperCase().indexOf(search.toUpperCase()) !== -1);
-  }
-})
-return filterStudent;
-} 
-
-window.processCohortData =(options)=>{
+window.processCohortData = (options)=>{
   let courses = Object.keys(options.cohort.coursesIndex);
   // Aquí se filtrarán estudiantes para luego poder realizar función número 1
   const  usersCopy = options.cohortData.users.filter(user =>user.role === 'student'); 
