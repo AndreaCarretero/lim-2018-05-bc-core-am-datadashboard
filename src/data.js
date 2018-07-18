@@ -210,12 +210,13 @@ window.filterUsers = (users, search) => {
 }
 
 window.processCohortData = (options) => {
-  let courses = Object.keys(options.cohort.coursesIndex);
-  // Aquí se filtrarán estudiantes para luego poder realizar función número 1
-  const  usersCopy = options.cohortData.users.filter(user =>user.role === 'student'); 
+  const courses = Object.keys(options.cohort.coursesIndex);
+  let  usersCopy = options.cohortData.users.filter(user =>user.role === 'student'); 
   const showStudents= computeUsersStats(usersCopy,options.cohortData.progress, courses );
-  // let studentsOrders = sortUsers(showStudents, options.orderBy, options.orderDirection);
-  console.log(showStudents);
+   let studentsOrders = sortUsers(showStudents, options.orderBy, options.orderDirection);
+  console.log(showStudents);(options.cohort.coursesIndex);
+  // Aquí se filtrarán estudia
   const viewUsersFilters = filterUsers(showStudents,options.search);
   return viewUsersFilters;
+  return showStudents;
 } 
