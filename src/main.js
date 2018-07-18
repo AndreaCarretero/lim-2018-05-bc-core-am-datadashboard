@@ -4,9 +4,15 @@ const listVenues = document.querySelector('#venues');
 const mainSection = document.getElementById('cohorts');
 const showUsersandProgress = document.getElementById('users');
 const content = document.getElementById('selectsede');
+
+
 const buttonOrderBy=  document.getElementById('orderButton');
 const selectAscDesc= document.getElementById('orderII');
 const selectAll= document.getElementById('order');
+
+
+
+
 //Objeto global "options" :
 
 let options = {
@@ -15,10 +21,26 @@ let options = {
     users: null,
     progress: null,
   },
-  orderBy: 'name',
+  orderBy: '',
   orderDirection: 'ASC',
   search: ''
 }
+
+
+//Agregando evento para función número 2- Sort
+buttonOrderBy.addEventListener('click', (event) => {
+  options.orderBy = selectAll.value;
+  options.orderDirection = selectAscDesc.value; 
+  console.log(options.orderBy);
+  
+  
+  const newOrder = sortUsers(processCohortData(options),options.orderBy,options.orderDirection);
+  console.log(newOrder);
+  // showUsersandProgress.innerHTML = '';
+  // viewProgress(newOrder);
+})
+ 
+
 
 
 // se utiliza xhr- 
@@ -93,15 +115,18 @@ content.addEventListener('click', (event) => {
 getData(event.target.id,`../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
 
-// Aplicando 2da funciónn para filtrar estudiantes
-filterSearch.addEventListener('keyup', (event) => { debugger
+
+
+
+// Aplicando 3era funciónn para filtrar estudiantes
+filterSearch.addEventListener('keyup', (event) => { 
   options.search = event.target.value;
   let searchNow= processCohortData(options); // Aquí se almacenará el nuevo array 
   showUsersandProgress.innerHTML= '';
   for(let users of searchNow){
     showUsersandProgress.innerHTML+=
 
-    `<div id='showEstudents'>
+ `<div >
 		<td id= 'tablestudent'>${users['name']}</td>
 		<td>${users.stats.percent}</td> 
     <td>${users.stats.exercises.percent}</td>
@@ -109,24 +134,10 @@ filterSearch.addEventListener('keyup', (event) => { debugger
     <td>${users.stats.quizzes.scoreSum}</td>
     <td>${users.stats.quizzes.scoreAvg}</td>
     <td>${users.stats.reads.percent}</td>
-		</div>
-		`;
+		</div>`;
 	};
 
 })
 
 
 
-/* 
-
-
-// Se llama 3ra función -ayuda Kalu
-buttonOrderBy.addEventListener('click', (event) => {
-  options.orderBy = selectAscDesc.value;
-  options.orderDirection = selectAll.value; 
-  console.log(options);
-  
-  const orderNow = processCohortData(options);
-  showUsersandProgress.innerHTML = '';
-  viewUsers(orderNow);
-}) */
