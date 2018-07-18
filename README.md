@@ -76,6 +76,12 @@ Se encontró esta información:
 ## Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
 Nuestro ideal para el proyecto :
+
+
+
+-Para realizar un prototipo de alta fidelidad , se utiliza Figma https://www.figma.com 
+(herramienta práctica y usable para poder realizar prototipos, opción hasta de crear interfaces)
+
 -Pensamos en el color rosa y negro para poder "jugar" con lo no cotidiano .
 resultado:
 
@@ -83,4 +89,41 @@ resultado:
 
 ![Vista 2](img/Vista-2-Figma.png)
 
-![Vista 3](img/Vista-Figma.png)
+![Vista 3](img/Vista-3-Figma.png)
+
+
+Este ideal fue pensando en contrastes,  el color negro junto al rosado hace un alto contraste en la segunda vista . 
+Luego,en la 3ra vista se quiere colocar blanco para que pueda visualizarse mejor toda la información.
+
+
+-Requerimientos para este proyecto:
+
++Extraer la data a través del archivo Json que nos proporionan,luego  mostrarla en la estructura HTML(pantalla)
+  ( para esto se utiliza uno de los métodos llamado "XHR")
+
++Filtrar a cada usuaria colocando la letra que se desee ( si se encuentra en la data)
+
+ Según read-me
++Permitir al usuario seleccionar un cohort de una lista de cohorts.
++Al seleccionar un cohort:
+  Listar las estudiantes de ese cohort
+  Para cada estudiante:
+  Calcular porcentaje de completitud de todos los cursos.
+  Calcular grado de completitud de lecturas, ejercicios autocorregidos, y quizzes. Ordenar estudiantes por completitud general (porcentaje consumido/completado de todos los cursos del cohort en cuestión), de lecturas, ejercicios autocorregidos y quizzes.
++Filtrar/buscar estudiantes por nombre.
++Visualizarse sin problemas desde distintos tamaños de pantallas: móviles, tablets y desktops.
++Incluir pruebas unitarias.
+
+El proceso ,como mencioné tiene toda una historia ya que el resultado es completamente diferente.por ahora. 
+
+Aquí se quiere mostrar y expresar que no solamente las cuatro funciones requeridas ,la data de usuarias con su progreso correspondiente  se muestran en la pantalla; lo interno de todo este tema es más lo aprendido ,se puede decir que lo fundamental es saber llamar bien a cada variable para que se reconozca bien cada petición que se solicite.
+Se realizó este proyecto con diversas historias cada día conforme se iba avanzando y la última semana fue la definitiva ya que se pudo avanzar enfocándose lo que pide el read-me realmente.
+
+
+Este proyecto no ha culminado,será mejorado con el pasar de los días hasta poder llegar a visualizar un gáfico tal como un DATADASHBOARD.
+
+Gracias-
+
+
+
+

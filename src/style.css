@@ -30,3 +30,27 @@ html,
 }
 
 
+@media screen and (max-width: 380px) {
+    .img-fluid {
+      width: 90%;
+    }
+    .sidebar-wrapper{
+     width: 50%;
+    }
+    .list{
+     width: 90%;
+    }
+    .row{
+      width: 100%;
+    }
+    
+    .sede {
+      width: 100%;
+    }
+    #selector-cohort {
+      width: 100%;
+    }
+    .select {
+      width: 100%
+    }
+   }
