@@ -53,7 +53,7 @@ const viewCohorts = (city, dataCohorts) => {
  content.innerHTML = '';
  for(cohort of cohortByCity){
     content.innerHTML +=
-      `<li id="${cohort.id}">${cohort.id}</li>`
+      `<button style="background-color: rgb(255, 229, 33)" id="${cohort.id}">${cohort.id}</button>`
   };
 };
 // Aquí se llama a progreso
@@ -136,14 +136,14 @@ buttonOrder.addEventListener('click', (event) => {
    showUsersandProgress.innerHTML= '';
    for(let users of orderNow){
      showUsersandProgress.innerHTML+=
-  `<div id= 'tablestudentIII'>
-     <td >${users['name']}</td>
-     <td>${users.stats.percent}</td> 
-     <td>${users.stats.exercises.percent}</td>
-     <td>${users.stats.quizzes.percent}</td>
-     <td>${users.stats.quizzes.scoreSum}</td>
-     <td>${users.stats.quizzes.scoreAvg}</td>
-     <td>${users.stats.reads.percent}</td>
+  `   <div
+     <td scope="row">${users['name']}</td>
+     <td scope="row">${users.stats.percent}</td> 
+     <td scope="row">${users.stats.exercises.percent}</td>
+     <td scope="row">${users.stats.quizzes.percent}</td>
+     <td scope="row">${users.stats.quizzes.scoreSum}</td>
+     <td scope="row">${users.stats.quizzes.scoreAvg}</td>
+     <td scope="row">${users.stats.reads.percent}</td>
      </div>`;
    };
 })
