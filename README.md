@@ -24,4 +24,42 @@ Así, el reto de este proyecto es crear una interfaz donde las TMs puedan
 _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 **data dashboard** (_tablero de visualización de datos_).
 
-## Introducción
+
+
+## Definición de producto
+
+
+¿Quiénes son los principales usuarios de producto?
+-Este proyecto está dirigido para lxs Training Mannager (las que tienen a cargo la información de postulantes-estudiantes en general)
+-Para definir en definitiva el usuario para este proyecto, se mencionarían a todos aquellos que pueden acceder a toda la "data" de postulantes -estudiantes,información de cursos,etc.
+
+
+
+¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+-Poder visualizar información real y trascendente de las estudiantes de Laboratoria, contar con una herramienta útil y práctica donde puedan acceder con alguna cuenta.
+
+
+¿Cuáles son los datos más relevantes que quieren ver en la interfaz.  ¿Cómo los descubriste?
+-Esta información se obtuvo mediante la primera entrevista a la Training Mannager - (Usuario), ella nos comentó que hay mucha información por mostrar,sin embargo ella y el equipo determinan que la info general,ejercicios,lecturas y quizzes es lo más importantes ya que técnicamente se está haciendo referencia de la data del Pre-trabajo( una de las etapas de selección)
+
+
+
+¿Cuándo revisan normalmente estos datos los usuarios?
+-Se podría mencionar que los usuarios ven esta información todas las semanas .
+
+
+¿Cómo crees que el producto les está resolviendo sus problemas?
+
+-Los usuarios tienen la herramienta cuando ellos gusten, pueden ingresar en cualquier momento del día y visualizan los datos que se mencionan en la anterior pregunta.
+
+
+¿Cómo fue tu proceso de diseño?
+
+El proceso tiene una larga historia,con buenos resultados al fin y al cabo y con un aprendizaje que perdurará por mucho tiempo.
+
+Para comenzar con este proyecto, se hizo una búsqueda de lo que significa datadashoard  y saber lo que nos están solicitando .
+
+Se encontró esta información:
+![Búsqueda 1].(lim-2018-05-bc-core-am-datadashboard/img/Vista 1-Figma.png)
+
+
