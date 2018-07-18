@@ -60,6 +60,6 @@ Para comenzar con este proyecto, se hizo una búsqueda de lo que significa datad
 
 Se encontró esta información:
 
-![Búsqueda 1](/img/Vista1-Figma.png)
+![Búsqueda 1](../img/Vista1-Figma.png)
 
 
