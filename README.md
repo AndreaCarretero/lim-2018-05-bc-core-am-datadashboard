@@ -58,8 +58,29 @@ _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 
 Para comenzar con este proyecto, se hizo una búsqueda de lo que significa datadashoard  y saber lo que nos están solicitando .
 
+Búsqueda adicional :
+-
 Se encontró esta información:
 
-![Búsqueda 1](../img/Vista1-Figma.png)
+![Búsqueda 1](img/DASHBOARD.jpg)
+
+-Aquí se visualiza un datadashboard completo con data real y gráficos.
 
 
+-Otro ejemplo: 
+
+![Búsqueda 1](img/Datadashboard2.jpg)
+
+
+
+## Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
+
+Nuestro ideal para el proyecto :
+-Pensamos en el color rosa y negro para poder "jugar" con lo no cotidiano .
+resultado:
+
+![Vista 1](img/Vista-1-Figma.png)
+
+![Vista 2](img/Vista-2-Figma.png)
+
+![Vista 3](img/Vista-Figma.png)
