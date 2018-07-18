@@ -53,12 +53,13 @@ _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 -Los usuarios tienen la herramienta cuando ellos gusten, pueden ingresar en cualquier momento del día y visualizan los datos que se mencionan en la anterior pregunta.
 
 
-¿Cómo fue tu proceso de diseño?
+**Proceso de diseño:
 +El proceso tiene una larga historia,con buenos resultados al fin y al cabo y con un aprendizaje que perdurará por mucho tiempo.
 
 Para comenzar con este proyecto, se hizo una búsqueda de lo que significa datadashoard  y saber lo que nos están solicitando .
 
 Se encontró esta información:
-![Búsqueda 1].(Vista 1-Figma.png)
+
+![Búsqueda 1](/img/Vista1-Figma.png)
 
 
