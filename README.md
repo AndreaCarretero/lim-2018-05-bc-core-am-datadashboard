@@ -26,6 +26,7 @@ _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 
 
 
+
 ## Definición de producto
 
 
@@ -49,17 +50,15 @@ _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 
 
 ¿Cómo crees que el producto les está resolviendo sus problemas?
-
 -Los usuarios tienen la herramienta cuando ellos gusten, pueden ingresar en cualquier momento del día y visualizan los datos que se mencionan en la anterior pregunta.
 
 
 ¿Cómo fue tu proceso de diseño?
-
-El proceso tiene una larga historia,con buenos resultados al fin y al cabo y con un aprendizaje que perdurará por mucho tiempo.
++El proceso tiene una larga historia,con buenos resultados al fin y al cabo y con un aprendizaje que perdurará por mucho tiempo.
 
 Para comenzar con este proyecto, se hizo una búsqueda de lo que significa datadashoard  y saber lo que nos están solicitando .
 
 Se encontró esta información:
-![Búsqueda 1].(lim-2018-05-bc-core-am-datadashboard/img/Vista 1-Figma.png)
+![Búsqueda 1].(Vista 1-Figma.png)
 
 
