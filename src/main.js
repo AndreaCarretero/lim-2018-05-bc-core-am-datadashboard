@@ -136,7 +136,7 @@ buttonOrder.addEventListener('click', (event) => {
    showUsersandProgress.innerHTML= '';
    for(let users of orderNow){
      showUsersandProgress.innerHTML+=
-  `   <div
+  ` <th
      <td scope="row">${users['name']}</td>
      <td scope="row">${users.stats.percent}</td> 
      <td scope="row">${users.stats.exercises.percent}</td>
@@ -144,7 +144,7 @@ buttonOrder.addEventListener('click', (event) => {
      <td scope="row">${users.stats.quizzes.scoreSum}</td>
      <td scope="row">${users.stats.quizzes.scoreAvg}</td>
      <td scope="row">${users.stats.reads.percent}</td>
-     </div>`;
+     </th>`;
    };
 })
 
