@@ -71,7 +71,28 @@ Se encontró esta información:
 
 ![Búsqueda 1](img/Datadashboard2.jpg)
 
+##Diseño (prototipo de baja fidelidad)
++Para tener una idea ,ideas más claras ; se decide realizar dibujos en papel con todas las posibles interfaces previamente a la primera entrevista con la Training Mannager- 
 
+ Sabiendo ya que es un datadashboard entonces decidimos colocar los gráficos ya que se tuvo una visión amplia de completar este proyecto.
+ resultados:
+
+-Interfaz #1 :
+ ![Baja fidelidad](img/Vista1bajafidelidad.jpg)
+
+
+ -Interfaz #2:
+ ![Baja fidelidad](img/Vista2bajafidelidad.jpg)
+
+ 
+ -Interfaz #3:
+ ![Baja fidelidad](img/Vista3bajafidelidad.jpg)
+
+ 
+ -Interfaz #4:
+ ![Baja fidelidad](img/Vista4bajafidelidad.jpg)
+
+ 
 
 ## Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
