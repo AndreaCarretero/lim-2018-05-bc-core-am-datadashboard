@@ -1,14 +1,9 @@
 window.computeUsersStats = (users, progress, courses) => {
-
-   
   let usersCopy = users;
   let progressCopy= progress;
-   
-
   /*  Declaro variables para cada propiedad del progreso de las alumnas
      propiedades del progreso  */
   const usersWithStats = [];
-  
   // Paso 1: calcúlo porcentaje de completitud para cada usuario --> courses
   courses.forEach(coursesName => {// recorriendo nombre de los cursos
     usersCopy.forEach((user) => {
@@ -21,8 +16,6 @@ window.computeUsersStats = (users, progress, courses) => {
       let quizzesCompleted= 0;
       let scoreSum= 0;
       let scoreAvg= 0;
-
-
       //Aquí se conectaran students(users) y progressCopy(pogress)
       if(progressCopy[user.id] && progressCopy[user.id].hasOwnProperty(coursesName)){// hasOwnProperty me indica si el usuario cuenta con la propiedad que estoy evaluando y devuelve un booleano
          percent= progress[user.id].intro.percent; 
@@ -31,8 +24,6 @@ window.computeUsersStats = (users, progress, courses) => {
           const parts= usersUnits[unitName].parts
           Object.keys(parts).forEach((partName)=>{
             const part = parts[partName];
-
-          
           // Calcular propiedad de 'excercises'
             if(part.hasOwnProperty('exercises')){
               const exercises= part.exercises;
@@ -56,9 +47,7 @@ window.computeUsersStats = (users, progress, courses) => {
                 readsCompleted = 1;
                 readsTotal = 1
                 }
-
               //Calcular propiedad de ' Quizzes'
-
               if(part.type === 'quiz'){
                 quizzesTotal+= 1;
                 quizzesCompleted+= part.completed;
@@ -69,21 +58,11 @@ window.computeUsersStats = (users, progress, courses) => {
           })
         })
       }  
-    //caculo porcentaje
-     let calculatePercent= (a,b) =>{
-      if(b==0){
-        return 0;
-      }else
-      return (a/b)*100;
-
-    }
-   
-    const exercisePercent= calculatePercent(exerciseCompleted, exerciseTotal );
-    const readsPercent = calculatePercent(readsCompleted, readsTotal);
-    const quizzesPercent = calculatePercent(quizzesCompleted, quizzesTotal);
-    
-  // Según read me -se retorna: (Se obtiene usuarias con su progreso correspondiente) 
-  
+   //cálculo de porcentaje
+    const exercisePercent= exerciseTotal ? ((exerciseCompleted / exerciseTotal ) * 100): exerciseTotal ;
+    const readsPercent = exerciseTotal ? ((readsCompleted / readsTotal ) * 100): readsTotal ;
+    const quizzesPercent = exerciseTotal ? ((quizzesCompleted / quizzesTotal ) * 100): quizzesTotal ;
+      // Según read me -se retorna: (Se obtiene usuarias con su progreso correspondiente) 
     const userWithStats = {
       name: user.name.toUpperCase(),
       stats:{
@@ -112,15 +91,12 @@ window.computeUsersStats = (users, progress, courses) => {
   })
   //return userWithSats
   return usersWithStats;
-}
- 
+} 
 // Aquí se implementará función 2 -sort para que se pueda ordenar cada propiedad
-
 window.sortUsers = (users, orderBy, orderDirection) => {
-
 const ordenarPorNombre = users.sort ((a, b) => {
-  var primero = a.name.toLowerCase();
-  var segundo = b.name.toLowerCase();
+  let primero = a.name;
+  let segundo = b.name;
   if (primero < segundo) {
      return -1;
      }
@@ -148,67 +124,38 @@ else if (orderBy === 'percent' & orderDirection === 'asc') {
 }
 //ordena por ejjercicios:
 else if (orderBy === 'exercises' & orderDirection === 'asc') {
-  const order = users.sort ((a, b) =>{ return a.stats.exercises.completed - b.stats.exercises.completed });
+  const order = users.sort ((a, b) =>{ return a.stats.exercises.percent - b.stats.exercises.percent});
   return order;
 }
 else if (orderBy === 'exercises' & orderDirection === 'desc') {
-  const order = users.sort((a, b) =>{ return b.stats.exercises.completed - a.stats.exercises.completed });
+  const order = users.sort((a, b) =>{ return b.stats.exercises.percent - a.stats.exercises.percent });
   return order;
 }
 //ordena por quizzes:
  else if (orderBy === 'quizzes' & orderDirection === 'asc') {
-  const order = users.sort ((a, b) =>{ return a.stats.quizzes.completed - b.stats.quizzes.completed });
+  const order = users.sort ((a, b) =>{ return a.stats.quizzes.percent - b.stats.quizzes.percent });
   return order;
 }
 else if (orderBy === 'quizzes' & orderDirection === 'desc') {
-  const order = users.sort ((a, b) =>{ return b.stats.quizzes.completed - a.stats.quizzes.completed });
+  const order = users.sort ((a, b) =>{ return b.stats.quizzes.percent - a.stats.quizzes.percent });
   return order;
 }
-
-// else if (orderBy === 'quizzesAvg' & orderDirection === 'asc') {
-//   const order = users.sort = (a, b) =>{ return a.stats.quizzes.scoreAvg - b.stats.quizzes.scoreAvg };
-//   return order;
-// }
-//  else if (orderBy === 'quizzesAvg' & orderDirection === 'desc') {
-//   const order = users.sort = (a, b)=> { return b.stats.quizzes.scoreAvg - a.stats.quizzes.scoreAvg };
-//   return order;
-// }
 //ordenar por lecturas:
-// else if (orderBy === 'reads' & orderDirection === 'asc') {
-//   const order = users.sort ((a, b)=> { return a.stats.reads.completed - b.stats.reads.completed });
-//   return order;
-// }
-// else {
-//   const order = users.sort ((a, b)=> { return b.stats.reads.completed - a.stats.reads.completed });
-//   return order;
-// }
+else if (orderBy === 'reads' & orderDirection === 'asc') {
+  const order = users.sort(function (a, b) { return a.stats.reads.percent - b.stats.reads.percent });
+  return order;
+} else if  (orderBy === 'reads' & orderDirection === 'desc') {
+  const order = users.sort(function (a, b) { return b.stats.reads.percent - a.stats.reads.percent });
+  return order;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 // Función para filtrar estudiantes. Se mostrarán con cada propiedad
 window.filterUsers = (users, search) => {
   const filterNow = users.filter(user => {
     return user.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
-
   });
-
   return filterNow;
 }
-
 window.processCohortData = (options) => {
   const courses = Object.keys(options.cohort.coursesIndex);
   let  usersCopy = options.cohortData.users.filter(user =>user.role === 'student'); 

@@ -1,20 +1,12 @@
-
 //Antes de comenzar con funciones; se declaran variables para traer los 'id´s' de html
 const listVenues = document.querySelector('#venues');
 const mainSection = document.getElementById('cohorts');
 const showUsersandProgress = document.getElementById('users');
 const content = document.getElementById('selectsede');
-
-
 const buttonOrder=  document.getElementById('orderButton');
 const selectAscDesc= document.getElementById('orderII');
 const selectAll= document.getElementById('order');
-
-
-
-
 //Objeto global "options" :
-
 let options = {
   cohort: null,
   cohortData: {
@@ -25,12 +17,6 @@ let options = {
   orderDirection: 'ASC',
   search: ''
 }
-
-
-
-
-
-
 // se utiliza xhr- 
 const getData = (str, url, callback) => { 
   const xhr = new XMLHttpRequest();
@@ -43,7 +29,6 @@ const getData = (str, url, callback) => {
   });
   xhr.send();
 }
-
 // Mostrar cohorts-
 const viewCohorts = (city, dataCohorts) => {
   options.cohort = dataCohorts;
@@ -58,13 +43,9 @@ const viewCohorts = (city, dataCohorts) => {
 };
 // Aquí se llama a progreso
 const viewProgress = (idOfCohorts, progressObject) => {
- /* console.log(idOfCohorts, progressObject)
-  console.log(processCohortData(options))  */
   options.cohortData.progress = progressObject;
   const array= processCohortData(options);
     console.log(array);
-    
-   
   for(const students of array){
     showUsersandProgress.innerHTML+=
     `<div id= "tablestudent">
@@ -77,17 +58,12 @@ const viewProgress = (idOfCohorts, progressObject) => {
              <td>${students.stats.reads.percent}</td>
              </div>`;
   }
-
 }
-
-
 //Aquí se llamará a Users
-
 const viewUsers = (idOfCohorts, usersArray) => {
     options.cohortData.users = usersArray;
   getData(idOfCohorts,`../data/cohorts/${idOfCohorts}/progress.json`,viewProgress);
 }
-
 //Variable para pintar en pantalla
 const showAll=(usersAndProgress)=>{
   for(const students of usersAndProgress){
@@ -103,15 +79,11 @@ const showAll=(usersAndProgress)=>{
     </div>`;
   }
 }
-
-
 // Se agrega evento correspondiente
-
 //2do
 listVenues.addEventListener('click', event => {
   getData(event.target.id, '../data/cohorts.json', viewCohorts);
 });
-
 // 4to
 content.addEventListener('click', (event) => {
      options.cohort.forEach((elementOfCohort) => { 
@@ -122,16 +94,11 @@ content.addEventListener('click', (event) => {
   }); 
 getData(event.target.id,`../data/cohorts/${event.target.id}/users.json`, viewUsers)
 });
-
 //Agregando evento para función número 2- Sort
 buttonOrder.addEventListener('click', (event) => {
   options.orderBy = selectAll.value;
-  console.log(options.orderBy);
   options.orderDirection = selectAscDesc.value;
-  console.log(options.orderDirection); 
-
   const newOrder = sortUsers(processCohortData(options),options.orderBy,options.orderDirection);
-  console.log(newOrder);
    let orderNow= processCohortData(options);
    showUsersandProgress.innerHTML= '';
    for(let users of orderNow){
@@ -147,9 +114,6 @@ buttonOrder.addEventListener('click', (event) => {
      </th>`;
    };
 })
-
-
-
 // Aplicando 3era funciónn para filtrar estudiantes
 filterSearch.addEventListener('keyup', (event) => { 
   options.search = event.target.value;
@@ -157,7 +121,6 @@ filterSearch.addEventListener('keyup', (event) => {
   showUsersandProgress.innerHTML= '';
   for(let users of searchNow){
     showUsersandProgress.innerHTML+=
-
  `<div id= 'tablestudentIII'>
 		<td >${users['name']}</td>
 		<td>${users.stats.percent}</td> 
@@ -168,8 +131,4 @@ filterSearch.addEventListener('keyup', (event) => {
     <td>${users.stats.reads.percent}</td>
 		</div>`;
 	};
-
 })
-
-
-
