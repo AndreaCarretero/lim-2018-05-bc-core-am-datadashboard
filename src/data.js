@@ -148,6 +148,14 @@ else if (orderBy === 'reads' & orderDirection === 'asc') {
   const order = users.sort(function (a, b) { return b.stats.reads.percent - a.stats.reads.percent });
   return order;
 }
+//ordenar por Score Avg
+else if (orderBy === 'scoreAvg' & orderDirection === 'asc') {
+  const order = users.sort(function (a, b) { return a.stats.quizzes.scoreAvg - b.stats.quizzes.scoreAvg });
+  return order;
+} else if  (orderBy === 'scoreAvg' & orderDirection === 'desc') {
+  const order = users.sort(function (a, b) { return b.stats.quizzes.scoreAvg - a.stats.quizzes.scoreAvg });
+  return order;
+}
 }
 // Función para filtrar estudiantes. Se mostrarán con cada propiedad
 window.filterUsers = (users, search) => {
